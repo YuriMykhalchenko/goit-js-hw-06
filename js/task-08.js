@@ -1,18 +1,20 @@
-const formEl = document.querySelector('.login-form');
-const inputs = document.querySelectorAll('input');
-const formbtnEl = document.querySelector('button');
-formEl.addEventListener('submit', onFormSubmit);
-function onFormSubmit(events) {
-	events.preventDefault();
-	inputs.forEach((input) => {
-		if (input.value.trim() === '') {
-			alert('Заповніть всі поля');
-		} else {
-			const formData = new FormData(events.currentTarget);
-			formData.forEach((value, name) => {
-				console.log(`${name} - ${value}`);
-			});
-		}
-		formEl.reset();
-	});
+const formEl = document.querySelector(".login-form");
+formEl.addEventListener("submit", fieldsCheck);
+function fieldsCheck(event) {
+  event.preventDefault();
+  const formElements = event.currentTarget.elements;
+  const email = formElements.email.value;
+  const password = formElements.password.value;
+  if (email.length === 0 || password.length === 0) {
+    alert("Заповнені не всі поля! Доповніть, інформацію, будь-ласка");
+    return;
+  }
+  const formData = {
+    email,
+    password,
+  };
+
+  console.log(formData);
+
+  formEl.reset();
 }
