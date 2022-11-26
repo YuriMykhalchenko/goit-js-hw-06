@@ -13,8 +13,6 @@ function fieldsCheck(event) {
     email,
     password,
   };
-
   console.log(formData);
-
   formEl.reset();
 }
